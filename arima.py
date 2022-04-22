@@ -13,7 +13,7 @@ from statsmodels.tsa.arima.model import ARIMA
 # CONNECT TO AWS RDS DATABASE
 # Use Streamlit secrets to store information about database
 hostname = st.secrets["hostname"]
-dbname = st.secrets["dbname "]
+dbname = st.secrets["dbname"]
 uname = st.secrets["uname"]
 pwd = st.secrets["pwd"]
 
