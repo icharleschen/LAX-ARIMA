@@ -11,10 +11,11 @@ from statsmodels.tsa.arima.model import ARIMA
 
 
 # CONNECT TO AWS RDS DATABASE
-# hostname = "laxstatus.cpt6nputh2zq.us-east-1.rds.amazonaws.com"
-# dbname = "laxstatus"
-# uname = "admin"
-# pwd = "Dsci-551"
+# Use Streamlit secrets to store information about database
+hostname = st.secrets["hostname"]
+dbname = st.secrets["dbname "]
+uname = st.secrets["uname"]
+pwd = st.secrets["pwd"]
 
 # SET UP MYSQL CONNECTION
 conn = pymysql.connect(host=hostname,
@@ -42,7 +43,7 @@ def getData(structure):
     return df
 
 
-# Visualize historical data SIMPLE VERSION
+# VISUALIZE HISTORICAL DATA SIMPLE VERSION
 def historicalDataSimple(df, structure, week):
     # Initialize number of days to display
     num_day_display = 24 * 7 * 2  # (2 weeks)
@@ -56,7 +57,7 @@ def historicalDataSimple(df, structure, week):
     st.line_chart(df.tail(num_day_display), use_container_width=True)
 
 
-# Display prediction made by arima model
+# DISPLAY PREDICTION MADE BY ARIMA MODEL
 def arimaPredict(df, structure, day_predict=4):
     # Generate testing dataframe df_test
     # Dataframe contains indexes for future 3 days, 72 hours in total
@@ -125,8 +126,8 @@ if __name__ == '__main__':
         label='Select the parking lot that you want to know in detail:',
         options=('P-1', 'P-2A', 'P-2B', 'P-3', 'P-4', 'P-5', 'P-6', 'P-7', 'LAX Economy Parking')
     )
-    # st.write('You selected:', options)
 
+    # GET NUMBER OF WEEKS FOR DISPLAY IN GRAPH
     num_week_display = st.slider(
         label='Select number of weeks of historical data you want to inspect:',
         min_value=1,
@@ -134,7 +135,9 @@ if __name__ == '__main__':
         value=1
     )
 
+    # GET DATA FROM DB
     data = getData(str(options))
+    # PLOT GRAPH
     historicalDataSimple(data, str(options), int(num_week_display))
 
     # OBSERVATIONS
@@ -162,4 +165,5 @@ if __name__ == '__main__':
                 parking structure in the future 3 days.
                 """)
 
+    # CALL MODEL
     arimaPredict(data, str(options))
