@@ -11,10 +11,10 @@ from statsmodels.tsa.arima.model import ARIMA
 
 
 # CONNECT TO AWS RDS DATABASE
-hostname = "laxstatus.cpt6nputh2zq.us-east-1.rds.amazonaws.com"
-dbname = "laxstatus"
-uname = "admin"
-pwd = "Dsci-551"
+# hostname = "laxstatus.cpt6nputh2zq.us-east-1.rds.amazonaws.com"
+# dbname = "laxstatus"
+# uname = "admin"
+# pwd = "Dsci-551"
 
 # SET UP MYSQL CONNECTION
 conn = pymysql.connect(host=hostname,
