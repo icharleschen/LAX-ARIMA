@@ -58,7 +58,7 @@ def historicalDataSimple(df, structure, week):
 
 
 # DISPLAY PREDICTION MADE BY ARIMA MODEL
-def arimaPredict(df, structure, day_predict=4):
+def arimaPredict(df, structure):
     # Generate testing dataframe df_test
     # Dataframe contains indexes for future 3 days, 72 hours in total
     dt = datetime.date.today()
@@ -71,6 +71,7 @@ def arimaPredict(df, structure, day_predict=4):
         test_date.append([str(dt) + '-' + str(hour_now + hour)])
 
     # Then fill dates within 3 days
+    day_predict = 4
     for day in range(1, day_predict):
         for hour in range(24):
             test_date.append([str(dt + datetime.timedelta(days=day)) + '-' + str(hour)])
@@ -88,7 +89,7 @@ def arimaPredict(df, structure, day_predict=4):
     y = train['Free Spaces']
 
     # Set up ARIMA model
-    arima_model = ARIMA(y, order=(2, 0, 1))
+    arima_model = ARIMA(y, order=(7, 1, 1))
     arima_model = arima_model.fit()
 
     # Train ARIMA model
@@ -167,3 +168,10 @@ if __name__ == '__main__':
 
     # CALL MODEL
     arimaPredict(data, str(options))
+
+    # Conclusion
+    st.subheader('Conclusion')
+    st.markdown("""
+                You can use the free paces prediction for future 3 days to plan you trip to LAX ahead! Notice that this
+                model is dynamic based on historical data. We believe the model will improve with more data collected.
+                """)
