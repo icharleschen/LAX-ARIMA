@@ -87,7 +87,7 @@ def arimaPredict(df, structure):
 
     # Format training dataframe
     train = df[df.index <= pd.to_datetime(str(dt) + '-' +
-                                          str(int(datetime.now(pst).hour)),
+                                          str(int(datetime.now(pst).hour-1)),
                                           format='%Y-%m-%d-%H')]
     y = train['Free Spaces']
 
