@@ -65,7 +65,7 @@ def arimaPredict(df, structure):
 
     # Use PST timezone
     pst = pytz.timezone('America/Los_Angeles')
-    dt = datetime.date(datetime.now())
+    dt = datetime.date(datetime.now(pst))
     test_date = []
 
     # First fill remaining hours of today
@@ -87,7 +87,7 @@ def arimaPredict(df, structure):
 
     # Format training dataframe
     train = df[df.index <= pd.to_datetime(str(dt) + '-' +
-                                          str(int(datetime.now().hour-1)),
+                                          str(int(datetime.now(pst).hour-1)),
                                           format='%Y-%m-%d-%H')]
     y = train['Free Spaces']
 
