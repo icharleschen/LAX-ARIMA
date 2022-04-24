@@ -1,6 +1,7 @@
 # IMPORT USEFUL LIBRARIES
 
 import datetime
+from datetime import datetime
 import matplotlib.pyplot as plt
 import numpy as np
 import pymysql
@@ -65,12 +66,12 @@ def arimaPredict(df, structure):
 
     # Use PST timezone
     pst = pytz.timezone('America/Los_Angeles')
-    dt = datetime.date.today()
+    dt = datetime.date(datetime.now())
     test_date = []
 
     # First fill remaining hours of today
-    hour_now = datetime.datetime.now(pst).hour
-    hour_to_fill = 24 - hour_now  # Use EST
+    hour_now = datetime.now(pst).hour
+    hour_to_fill = 24 - hour_now
     for hour in range(hour_to_fill):
         test_date.append([str(dt) + '-' + str(hour_now + hour)])
 
