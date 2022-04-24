@@ -1,7 +1,6 @@
 # IMPORT USEFUL LIBRARIES
 
-import datetime
-from datetime import datetime
+from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import numpy as np
 import pymysql
@@ -78,7 +77,7 @@ def arimaPredict(df, structure):
     # Then fill dates within 3 days
     for day in range(1, 4):
         for hour in range(24):
-            test_date.append([str(dt + datetime.timedelta(days=day)) + '-' + str(hour)])
+            test_date.append([str(dt + timedelta(days=day)) + '-' + str(hour)])
 
     # Format testing dataframe
     df_test = pd.DataFrame(test_date, columns=['date'])
@@ -88,7 +87,7 @@ def arimaPredict(df, structure):
 
     # Format training dataframe
     train = df[df.index <= pd.to_datetime(str(dt) + '-' +
-                                          str(int(datetime.datetime.now().hour-1)),
+                                          str(int(datetime.now().hour-1)),
                                           format='%Y-%m-%d-%H')]
     y = train['Free Spaces']
 
