@@ -66,7 +66,7 @@ def arimaPredict(df, structure):
 
     # First fill remaining hours of today
     hour_now = datetime.datetime.now().hour
-    hour_to_fill = 24 - hour_now
+    hour_to_fill = 24 + 3 - hour_now  # Use EST
     for hour in range(hour_to_fill):
         test_date.append([str(dt) + '-' + str(hour_now + hour)])
 
@@ -82,7 +82,7 @@ def arimaPredict(df, structure):
     test = df_test
 
     # Format training dataframe
-    train = df[df.index <= pd.to_datetime(str(dt) + '-' + 
+    train = df[df.index <= pd.to_datetime(str(dt) + '-' +
                                           str(int(datetime.datetime.now().hour-1)),
                                           format='%Y-%m-%d-%H')]
     y = train['Free Spaces']
