@@ -4,6 +4,7 @@ import datetime
 import matplotlib.pyplot as plt
 import numpy as np
 import pymysql
+import pytz
 import pandas as pd
 import streamlit as st
 
@@ -61,12 +62,15 @@ def historicalDataSimple(df, structure, week):
 def arimaPredict(df, structure):
     # Generate testing dataframe df_test
     # Dataframe contains indexes for future 3 days, 72 hours in total
-    dt = datetime.date.today()
+
+    # Use PST timezone
+    pst = pytz.timezone('America/Los_Angeles')
+    dt = datetime.date.today(pst)
     test_date = []
 
     # First fill remaining hours of today
-    hour_now = datetime.datetime.now().hour
-    hour_to_fill = 21 - hour_now  # Use EST
+    hour_now = datetime.datetime.now(pst).hour
+    hour_to_fill = 24 - hour_now  # Use EST
     for hour in range(hour_to_fill):
         test_date.append([str(dt) + '-' + str(hour_now + hour)])
 
