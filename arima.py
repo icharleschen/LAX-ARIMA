@@ -66,7 +66,7 @@ def arimaPredict(df, structure):
 
     # First fill remaining hours of today
     hour_now = datetime.datetime.now().hour
-    hour_to_fill = 24 + 3 - hour_now  # Use EST
+    hour_to_fill = 21 - hour_now  # Use EST
     for hour in range(hour_to_fill):
         test_date.append([str(dt) + '-' + str(hour_now + hour)])
 
