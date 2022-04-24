@@ -65,7 +65,7 @@ def arimaPredict(df, structure):
 
     # Use PST timezone
     pst = pytz.timezone('America/Los_Angeles')
-    dt = datetime.date.today(pst)
+    dt = datetime.date.today()
     test_date = []
 
     # First fill remaining hours of today
