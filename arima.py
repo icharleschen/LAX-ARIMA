@@ -82,13 +82,13 @@ def arimaPredict(df, structure):
     test = df_test
 
     # Format training dataframe
-    train = df[df.index <= pd.to_datetime(str(dt) +
+    train = df[df.index <= pd.to_datetime(str(dt) + '-' +
                                           str(int(datetime.datetime.now().hour-1)),
                                           format='%Y-%m-%d-%H')]
     y = train['Free Spaces']
 
     # Set up ARIMA model
-    arima_model = ARIMA(y, order=(7, 1, 1))
+    arima_model = ARIMA(y, order=(2, 0, 1))
     arima_model = arima_model.fit()
 
     # Train ARIMA model
