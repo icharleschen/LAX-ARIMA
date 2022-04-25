@@ -75,9 +75,13 @@ def arimaPredict(df, structure):
         test_date.append([str(dt) + '-' + str(hour_now + hour)])
 
     # Then fill dates within 3 days
-    for day in range(1, 4):
+    for day in range(1, 3):
         for hour in range(24):
             test_date.append([str(dt + timedelta(days=day)) + '-' + str(hour)])
+
+    # Fill last day's remaining hours
+    for hour in range(hour_to_fill):
+        test_date.append([str(dt) + '-' + str(hour_now + hour)])
 
     # Format testing dataframe
     df_test = pd.DataFrame(test_date, columns=['date'])
