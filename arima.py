@@ -80,8 +80,8 @@ def arimaPredict(df, structure):
             test_date.append([str(dt + timedelta(days=day)) + '-' + str(hour)])
 
     # Fill last day's remaining hours
-    for hour in range(hour_to_fill):
-        test_date.append([str(dt+timedelta(days=3)) + '-' + str(hour_now + hour)])
+    for hour in range(hour_now):
+        test_date.append([str(dt+timedelta(days=3)) + '-' + str(hour)])
 
     # Format testing dataframe
     df_test = pd.DataFrame(test_date, columns=['date'])
