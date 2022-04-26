@@ -96,7 +96,7 @@ def arimaPredict(df, structure):
     y = train['Free Spaces']
 
     # Set up ARIMA model
-    arima_model = ARIMA(y, order=(2, 1, 2))
+    arima_model = ARIMA(y, order=(2, 0, 1))
     arima_model = arima_model.fit()
 
     # Train ARIMA model
