@@ -107,7 +107,7 @@ def arimaPredict(df, structure):
 
     # Select useful information from model
     y_pred_out = y_pred_df[["Predictions"]].copy()
-    df_join = train.tail(24).append(y_pred_out)
+    df_join = train.tail(48).append(y_pred_out)
     # Plot the result
     st.subheader('Free Spaces Prediction at {struct}'.format(struct=structure))
     st.line_chart(df_join, use_container_width=True)
