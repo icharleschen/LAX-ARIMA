@@ -132,7 +132,7 @@ if __name__ == '__main__':
     st.header('Historical Data and Prediction')
 
     # NOTE FOR STOP GETTING DATA
-    st.markdown("We stop fetching data from data source on 18 May 2022 at 5 p.m. PST.")
+    st.markdown("***We stop fetching data from data source on 18 May 2022 at 5 p.m. PST.***")
 
     # DESCRIPTION
     st.markdown("""
