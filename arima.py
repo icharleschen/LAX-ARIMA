@@ -70,7 +70,7 @@ def arimaPredict(df, structure):
     # dt = datetime.date(datetime.now(pst))
 
     # Static datetime
-    dt = datetime.date(2022, 5, 18)
+    dt = ddatetime.strptime('18/05/22', '%d/%m/%y').date()
 
     test_date = []
 
