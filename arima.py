@@ -65,11 +65,22 @@ def arimaPredict(df, structure):
 
     # Use PST timezone
     pst = pytz.timezone('America/Los_Angeles')
-    dt = datetime.date(datetime.now(pst))
+
+    # Dynamic datetime (original implementation)
+    # dt = datetime.date(datetime.now(pst))
+
+    # Static datetime
+    dt = datetime.date(2022, 5, 18)
+
     test_date = []
 
     # First fill remaining hours of today
-    hour_now = datetime.now(pst).hour
+    # Dynamic datetime (original implementation)
+    # hour_now = datetime.now(pst).hour
+
+    # Static hour
+    hour_now = 17
+
     hour_to_fill = 24 - hour_now
     for hour in range(hour_to_fill):
         test_date.append([str(dt) + '-' + str(hour_now + hour)])
