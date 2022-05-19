@@ -57,6 +57,9 @@ def historicalDataSimple(df, structure, week):
     st.subheader('Historical Data of Number of Free Spaces at {struct}'.format(struct=structure))
     st.line_chart(df.tail(num_day_display), use_container_width=True)
 
+    # Data source link
+    st.write("Data source: [Los Angeles International Airport (LAX) - Parking Lots Current Status](https://data.lacity.org/Transportation/Los-Angeles-International-Airport-LAX-Parking-Lots/dik5-hwp6)")
+
 
 # DISPLAY PREDICTION MADE BY ARIMA MODEL
 def arimaPredict(df, structure):
@@ -127,6 +130,9 @@ def arimaPredict(df, structure):
 if __name__ == '__main__':
     # MAKE TITLE
     st.header('Historical Data and Prediction')
+
+    # NOTE FOR STOP GETTING DATA
+    st.markdown("We stop fetching data from data source on 18 May 2022 at 5 p.m. PST.")
 
     # DESCRIPTION
     st.markdown("""
